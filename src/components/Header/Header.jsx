@@ -19,11 +19,11 @@ function Header() {
 
   const handleNavClick = (slug) => {
     navigate(slug);
-    setMenuOpen(false); // close menu after navigation
+    setMenuOpen(false); 
   };
 
   return (
-    <header className="py-3 shadow bg-gray-500 text-white">
+    <header className="relative py-3 shadow bg-gray-500 text-white">
       <Container>
         <nav className="flex items-center justify-between">
           {/* Logo */}
@@ -31,7 +31,7 @@ function Header() {
             <Logo width="150px" />
           </Link>
 
-          {/* Hamburger Icon (visible on mobile only) */}
+          {/* Hamburger icon (mobile only) */}
           <button
             className="sm:hidden text-white"
             onClick={() => setMenuOpen(!menuOpen)}
@@ -39,7 +39,7 @@ function Header() {
             {menuOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
 
-          {/* Nav Items (desktop) */}
+          {/* Desktop nav */}
           <ul className="hidden sm:flex ml-auto gap-4">
             {navItems.map(
               (item) =>
@@ -61,10 +61,10 @@ function Header() {
             )}
           </ul>
         </nav>
-
-        {/* Mobile Menu */}
+      
+        
         {menuOpen && (
-          <ul className="sm:hidden mt-4 space-y-2">
+          <ul className="absolute top-full left-0 w-full bg-gray-600 sm:hidden flex flex-col items-start px-4 py-2 space-y-2 shadow-lg z-50">
             {navItems.map(
               (item) =>
                 item.active && (
@@ -85,7 +85,7 @@ function Header() {
             )}
           </ul>
         )}
-      </Container>
+        </Container>
     </header>
   );
 }
